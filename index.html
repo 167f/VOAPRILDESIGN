@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APRIL - Design Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.7s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background: white;
+            width: 16px;
+            border-radius: 4px;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .prev {
+            left: 16px;
+        }
+
+        .next {
+            right: 16px;
+        }
+
+        .title-section {
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 36rem;
+        }
+
+        .title-section h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .works-section {
+            padding: 4rem 0;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .featured-card {
+            background: #f5f5f5;
+            border-radius: 16px;
+            padding: 2rem;
+            aspect-ratio: 1/1;
+        }
+
+        .contact-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact-card {
+            max-width: 28rem;
+            margin: 0 auto;
+            background: #f5f5f5;
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .contact-icon {
+            background: white;
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .title-section h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h2>APRIL</h2>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="public/placeholder.svg" alt="Design work 1">
+                    </div>
+                    <div class="slide">
+                        <img src="public/placeholder.svg" alt="Design work 2">
+                    </div>
+                    <div class="slide">
+                        <img src="public/placeholder.svg" alt="Design work 3">
+                    </div>
+                </div>
+                <button class="nav-button prev" onclick="prevSlide()">←</button>
+                <button class="nav-button next" onclick="nextSlide()">→</button>
+                <div class="slider-nav" id="sliderNav"></div>
+            </div>
+
+            <div class="title-section">
+                <h1>APRIL</h1>
+                <p>Get Your Design Fix. Where Creativity Meets Functionality.</p>
+            </div>
+        </section>
+
+        <section class="works-section">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2>MY WORKS</h2>
+                <p>Design in its purest form</p>
+            </div>
+
+            <div class="works-grid">
+                <div class="featured-card">
+                    <h3>Industrial Design</h3>
+                    <p>Showcasing product design projects with a focus on form and function</p>
+                </div>
+                <div style="display: grid; gap: 1rem;">
+                    <div class="featured-card" style="aspect-ratio: 2/1;">
+                        <h3>AIGC-Assisted Design</h3>
+                        <p>Exploring the intersection of AI and creative design</p>
+                    </div>
+                    <div class="featured-card" style="aspect-ratio: 2/1;">
+                        <h3>Motion Design</h3>
+                        <p>Dynamic visual experiences and animations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>CONTACT ME</h2>
+            <p style="margin-bottom: 2rem;">Let's work together</p>
+
+            <div class="contact-card">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <p style="color: #666;">Email</p>
+                        <p><strong>April.design2025@163.com</strong></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <p style="color: #666;">Phone</p>
+                        <p><strong>17857133360</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
+        const sliderNav = document.getElementById('sliderNav');
+
+        // Create navigation dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+            dot.onclick = () => goToSlide(index);
+            sliderNav.appendChild(dot);
+        });
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                dot.className = `slider-dot ${index === currentSlide ? 'active' : ''}`;
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Auto advance slides
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html> 
